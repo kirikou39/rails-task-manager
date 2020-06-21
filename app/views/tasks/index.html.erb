@@ -1,10 +1,23 @@
 <h1>My tasks</h1>
-<ul>
-  <% @tasks.each do |item| %>  
-    <li><%= link_to(item.title, task_path(item.id)) %>
-    <%= link_to "Delete", "/tasks/#{item.id}", method: :delete, data: { confirm: "Are you sure?"} %>
-    <%= tag.i class: 'fas fa-trash-alt' %></li>
+
+<ul id="tasks">
+  <% @tasks.each do |task| %>  
+    <li>
+      <% if task.completed %>
+        <i class="fa fa-check-square-o"></i>
+      <% else %>
+        <i class="fa fa-square-o"></i>
+      <% end %>
+      <%= link_to(task.title, task_path(task.id)) %>
+      .
+      <%= link_to task_path(task.id), method: :delete, data: { confirm: "Delete #{task.title}?"} do %>
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+      <% end %>
+    </li>
   <% end %>
 </ul>
 
-<%= link_to "Add a new task", new_task_path %>
+<%= link_to new_task_path do %>
+  <i class="fa fa-plus"></i> Add a new task
+<% end %>
+
