@@ -1,9 +1,1 @@
-<%= form_for(@task) do |field| %>
-  <%= field.label :title %>
-  <%= field.text_field :title %>
-  <%= field.label :details %>
-  <%= field.text_field :details %>
-  <%= field.submit %>
-<% end %>
-
-<%= link_to "Back to list", tasks_path %>
+<%= render "form", task: @task %>
